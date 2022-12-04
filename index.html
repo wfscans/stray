@@ -1,0 +1,32 @@
+<html>
+<head>
+<script>
+function thing2() {
+        var xmlhttp = new XMLHttpRequest;
+       
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4){
+                if (xmlhttp.status == 200) {
+                    var response = xmlhttp.responseText;
+                   
+                    if(response == '{"data":[],"pagination":{}}'){
+                       
+                        document.body.innerHTML = "<h1>No.</h1>";
+                       
+                    } else {
+                        document.body.innerHTML = "<h1>Yes.</h1><iframe src=\"https://player.twitch.tv/?channel=straymav\" width=\"100%\" height=\"100%\"></iframe>";
+                    }
+                } else {
+                    document.body.innerHTML = "<h1>Something went wrong. Try again later... the answer is prob <i>no</i> though. <img src=\"https://static-cdn.jtvnw.net/emoticons/v1/25/3.0\" style=\"height: 35px;\"></h1>";
+                }
+            }
+        }
+        xmlhttp.open('GET', 'https://api.twitch.tv/helix/streams?user_login=straymav');
+        xmlhttp.setRequestHeader('Client-Id', 'zsx4qgocpn63elnqby3nibiu38t0ja');
+        xmlhttp.send();
+}
+</script>
+</head>
+<body onload="thing2()" style="background-color:#8E8E8E;" align="center">
+</body>
+</html>
